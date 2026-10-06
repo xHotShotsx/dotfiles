@@ -1,0 +1,7 @@
+[bar.main]
+background_opacity = 0.0
+compositor_blur = false
+shadow = false
+border_width = 0.0
+smart_auto_hide = true
+reserve_space = false
