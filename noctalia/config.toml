@@ -7,3 +7,14 @@ shadow = false
 border_width = 0.0
 smart_auto_hide = true
 reserve_space = false
+
+[nightlight]
+enabled = true
+force = false
+temperature_day = 6500
+temperature_night = 4500
+
+[location]
+custom_schedule = true
+sunset = "21:30"
+sunrise = "06:30"

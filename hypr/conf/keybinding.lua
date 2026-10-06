@@ -21,13 +21,6 @@ hl.bind("SUPER + ALT + D", function()
     hl.dispatch(hl.dsp.workspace.toggle_special("minimized"))
 end)
 
-hl.bind("SUPER + CTRL + S", function()
-    hl.dispatch(hl.dsp.exec_cmd("hyprsunset --temperature 4500 --gamma 75"))
-end)
-hl.bind("SUPER + CTRL + K", function()
-    hl.dispatch(hl.dsp.exec_cmd("pkill hyprsunset"))
-end)
-
 hl.bind("ALT + F4 + RETURN", hl.dsp.exec_cmd("poweroff"))
 hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("reboot"))
 
