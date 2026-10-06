@@ -1,7 +1,7 @@
 [bar.main]
 background_opacity = 0.0
 capsule = true
-capsule_opacity = 0.85
+capsule_opacity = 0.5
 compositor_blur = false
 shadow = false
 border_width = 0.0
