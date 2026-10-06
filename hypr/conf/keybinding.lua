@@ -8,7 +8,7 @@ hl.bind("SUPER + J", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + SHIFT + B", function()
     hl.dispatch(hl.dsp.exec_cmd("killall -USR1 waybar"))
 end)
-hl.bind("SUPER + ALT + CTRL + + B", function()
+hl.bind("SUPER + ALT + CTRL + B", function()
     hl.dispatch(hl.dsp.exec_cmd("hyprctl reload"))
 end)
 -- Press SUPER + S to hide (minimize) the active window into the minimized scratching pool
