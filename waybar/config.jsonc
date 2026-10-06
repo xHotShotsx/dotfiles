@@ -1,0 +1,91 @@
+{
+    // 🖥️ TARGET YOUR MAIN MONITOR ONLY
+    // Prevents the bar from rendering on side/overhead screens and stealing gaming screen space
+    "output": "DP-4",
+    "layer": "bottom",
+    "position": "top",
+    "height": 34,
+    "spacing": 4,
+    "mode": "dock",
+    "exclusive": false,
+    "passthrough": false,
+    "start-hidden": true,
+    "modifier-reset": true,
+
+
+
+    // 🧩 MODULE ARRANGEMENT
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "hyprland/language", // 🌐 YOUR MULTI-LANGUAGE MONITOR MATRIX
+        "tray"
+    ],
+
+    // ⚙️ MODULE DEFINITIONS
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "active-only": false,
+        "warp-on-scroll": false,
+        "format": "{name}"
+    },
+
+    "clock": {
+        "timezone": "Europe/London",
+        "format": "⏰ {:%H:%M  📅 %A, %d %B}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": true,
+        "interval": 2
+    },
+
+    "memory": {
+        "format": "  {}%",
+        "interval": 2
+    },
+
+    // 🌐 THE POLYGLOT LOOP TRACKER
+    "hyprland/language": {
+        "format": "🗣️ {}",
+        "format-english-(uk)": "GB",
+	"format-arabic": "AR",
+        "format-russian": "RU",
+        "format-greek": "GR",
+        "format-hebrew": "HE",
+        "format-hindi": "HI",
+        "format-urdu": "UR",
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "🔇 Muted",
+        "format-icons": {
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "kitty -e pulsemixer" // Launches a quick console mixer on click
+    },
+
+    "network": {
+        "format-wifi": "   {essid}",
+        "format-ethernet": "    wired",
+        "format-disconnected": "⚠️ Disconnected"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+}

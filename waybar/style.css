@@ -1,0 +1,89 @@
+/* =========================================================================
+   ~/.config/waybar/style.css
+   ========================================================================= */
+
+* {
+    font-family: "JetBrains Mono Nerd Font", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: rgba(26, 26, 26, 0.0); /* Semi-dark translucent container */
+    border-bottom: none;
+    box-shadow: none;
+    color: #ffffff;
+    transition-property: background-color, transform;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+window#waybar.hidden {
+    opacity: 0.0;
+}
+
+/* =========================================================================
+   ~/.config/waybar/style.css
+   ========================================================================= */
+
+* {
+    font-family: "JetBrains Mono Nerd Font", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 🧼 TRANSPARENT BAR CONTAINER */
+window#waybar {
+    background-color: rgba(26, 26, 26, 0.0); /* Pure invisible backing */
+    border: none;
+    box-shadow: none;
+    color: #ffffff;
+    
+    transition-property: background-color, transform;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+window#waybar.hidden {
+    opacity: 0.0;
+}
+
+/* 📦 SLICK MODULAR WIDGET CAPSULES WITH NEON BORDERS */
+#clock,
+#cpu,
+#memory,
+#language,
+#pulseaudio,
+#network,
+#tray {
+    padding: 0 14px;
+    margin: 4px 2px;
+    background-color: rgba(26, 26, 26, 0.85); /* Obsidian capsule core */
+    
+    /* ✨ THE NEON TRIM FIX: Adds a sharp, glowing magenta border line */
+    border: 1px solid rgba(255, 0, 127, 0.6); 
+    border-radius: 6px;
+}
+
+/* 🔥 Highlight your active language matrix widget with the electric cyan accent! */
+#language {
+    color: #00f0ff;
+    border: 1px solid rgba(0, 240, 255, 0.7);
+    box-shadow: 0 0 4px rgba(0, 240, 255, 0.3); /* Subtle glow effect */
+}
+
+/* 🗔 WORKSPACE TOGGLE CAPSULES */
+#workspaces button {
+    padding: 0 10px;
+    background-color: rgba(26, 26, 26, 0.85);
+    margin: 4px 1px;
+    border: 1px solid rgba(255, 0, 127, 0.4);
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    color: #00f0ff;
+    border: 1px solid #00f0ff;
+    border-bottom: 2px solid #00f0ff;
+}
