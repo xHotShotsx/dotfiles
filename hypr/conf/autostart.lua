@@ -8,4 +8,3 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("linux-wallpaperengine --fps 60 --scaling fill --screen-root DP-4 --bg 1611406045")
     hl.exec_cmd("linux-wallpaperengine --fps 60 --scaling fill --screen-root DP-2 --bg 1799666057")
 end)
-

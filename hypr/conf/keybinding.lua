@@ -23,6 +23,9 @@ end)
 
 hl.bind("ALT + F4 + RETURN", hl.dsp.exec_cmd("poweroff"))
 hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("reboot"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd("hyprctl hypr-autoscroll toggle"), {
+  description = "Toggle middle-button autoscroll",
+})
 
 -- 🎯 TARGETING YOUR PERFORMANCE GAMEMODE TOGGLE
 if toggle_gamemode then
@@ -97,7 +100,9 @@ hl.bind("SUPER + F12", hl.dsp.exec_cmd("hyprshot -m region -m active --clipboard
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region -z --clipboard-only"))
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"), { locked = true })
-hl.bind("SUPER + E", hl.dsp.exec_cmd("dolphin"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("thunar"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("systemsettings"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("discord"))
+hl.bind("SUPER + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("mpv"))

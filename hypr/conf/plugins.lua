@@ -1,0 +1,20 @@
+hl.plugin.load(
+  os.getenv("HOME") .. "/.local/src/hypr-autoscroll/build/hypr-autoscroll.so"
+)
+
+hl.config({
+  plugin = {
+    hypr_autoscroll = {
+      enabled = true,
+      direct_activation = false,
+      button = 274,
+      dead_zone = 12.0,
+      sensitivity = 4.0,
+      acceleration = 1.075,
+      max_speed = 1500.0,
+      horizontal = true,
+      vertical = true,
+      frame_interval_ms = 16,
+    },
+  },
+})
