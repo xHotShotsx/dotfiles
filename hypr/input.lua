@@ -5,7 +5,7 @@ hl.config({
         -- 🌐 THE GLOBAL POLYGLOT MATRIX
         -- gb = UK English  | ara = Arabic | ru = Russian 
         -- gr = Greek       | il  = Hebrew | in = Hindi | pk = Urdu
-        kb_layout = "gb,ara,ru,gr,il,in,pk", 
+        kb_layout = "gb,ara,ru,gr",
         
         -- 🔀 THE CYCLE SHORTCUT
         -- This lets you cycle through all 7 layouts sequentially.

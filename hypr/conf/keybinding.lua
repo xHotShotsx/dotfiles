@@ -26,6 +26,9 @@ hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("reboot"))
 hl.bind("SUPER + A", hl.dsp.exec_cmd("hyprctl hypr-autoscroll toggle"), {
   description = "Toggle middle-button autoscroll",
 })
+hl.bind("SUPER + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"), {
+  description = "Toggle Noctalia clipboard",
+})
 
 -- 🎯 TARGETING YOUR PERFORMANCE GAMEMODE TOGGLE
 if toggle_gamemode then
@@ -52,9 +55,16 @@ hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- 🌐 MULTI-LANGUAGE KEYBOARD TOGGLE
-hl.bind("ALT + SHIFT", function()
-    hl.dispatch(hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+local KB = "steelseries-steelseries-apex-pro-tkl"
+
+hl.bind("SUPER + SPACE", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprctl switchxkblayout " .. KB .. " next"))
 end)
+
+-- optional: keycode variant of Alt+Shift, test with the Super+Space one in place
+-- hl.bind("ALT + code:50", function()
+--     hl.dispatch(hl.dsp.exec_cmd("hyprctl switchxkblayout " .. KB .. " next"))
+-- end, { release = true })
 
 -- 🔊 MULTIMEDIA KEYS (Audio & Brightness controls)
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true })
@@ -71,33 +81,12 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 -- 🌐 THE EXPLICIT LUA MULTI-LANGUAGE LAYOUT ROUTER
 -- Define your polyglot array in the exact target order (0-indexed for Hyprland's engine)
-local layouts = { "gb", "ara", "ru", "gr", "il", "in", "pk" }
+local layouts = { "gb", "ara", "ru", "gr" }
 local current_layout_index = 0 -- Starts at 'gb'
-
-hl.bind("ALT + SHIFT", function()
-    -- Advance to the next layout index in the matrix loop
-    current_layout_index = current_layout_index + 1
-    if current_layout_index >= #layouts then
-        current_layout_index = 0 -- Reset back to 0 (gb) once it hits the end
-    end
-    
-    -- Pick out the exact language code string
-    local target_lang = layouts[current_layout_index + 1]
-    
-    -- Construct the exact command targeting your physical keyboard layout engine
-    -- This forces the compositor to shift your device state explicitly
-    local switch_cmd = "hyprctl switchxkblayout all " .. tostring(current_layout_index)
-    
-    -- Fire the call directly into the compositor thread
-    hl.dispatch(hl.dsp.exec_cmd(switch_cmd))
-    
-    -- OPTIONAL LOGGING: Un-comment the line below if you want to trace it in 'hyprctl logger'
-    -- print("Language manually routed to: " .. target_lang .. " (Index: " .. current_layout_index .. ")")
-end)
 
 -- MISC.
 hl.bind("SUPER + F12", hl.dsp.exec_cmd("hyprshot -m region -m active --clipboard-only"))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region -z --clipboard-only"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"), { locked = true })
 hl.bind("SUPER + E", hl.dsp.exec_cmd("thunar"))
@@ -106,3 +95,4 @@ hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("discord"))
 hl.bind("SUPER + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("mpv"))
+hl.bind("SUPER + S", hl.dsp.exec_cmd("./signal-desktop.AppImage"))
