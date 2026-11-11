@@ -8,16 +8,27 @@ hl.monitor({
     transform = 1
 })
 
-hl.monitor({
-    output    = "DP-4",
-    mode      = "3840x2160@240",
-    position  = "2520x0",
-    scale     = 1.5,
-    bitdepth = 10,
-    cm = "hdr",
-    sdrbrightness = 2.0,
-    sdrsaturation = 1.0
-})
+local hdr_on = true
+
+local function apply_dp4()
+    hl.monitor({
+        output   = "DP-4",
+        mode     = "3840x2160@240",
+        position = "2520x0",
+        scale    = 1.5,
+        bitdepth = 10,
+        cm       = hdr_on and "hdr" or "srgb",
+        sdrbrightness = 1.4,
+        sdrsaturation = 1.0,
+    })
+end
+
+apply_dp4()
+
+hl.bind("SUPER+F10", function()
+    hdr_on = not hdr_on
+    apply_dp4()
+end)
 
 hl.monitor({
     output   = "DP-2",
