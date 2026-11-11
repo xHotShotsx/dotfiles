@@ -12,7 +12,11 @@ hl.monitor({
     output    = "DP-4",
     mode      = "3840x2160@240",
     position  = "2520x0",
-    scale     = 1.5
+    scale     = 1.5,
+    bitdepth = 10,
+    cm = "hdr",
+    sdrbrightness = 2.0,
+    sdrsaturation = 1.0
 })
 
 hl.monitor({
@@ -29,8 +33,8 @@ hl.config({
         vrr = 2
     },
     xwayland = {
-	force_zero_scaling = true
-    }
+	    force_zero_scaling = true
+    },
 })
 
 hl.on("hyprland.start", function()
