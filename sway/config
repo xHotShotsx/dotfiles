@@ -1,0 +1,178 @@
+# ~/.config/sway/config
+# Plain sway 1.12 port of xHotShotsx/dotfiles (noctalia branch, hypr/).
+# HDR needs the Vulkan renderer: launch with
+#   env WLR_RENDERER=vulkan sway --unsupported-gpu
+# Written without a sway install to test against: run
+#   sway -C --unsupported-gpu
+# after copying it in, and fix whatever line it names.
+
+set $mod Mod4
+set $term kitty
+set $ipc noctalia msg
+
+# ---------------------------------------------------------------- MONITORS
+# Same geometry as hypr/conf/monitor.lua (positions are logical pixels).
+output DP-3 mode 2560x1440@280Hz position 1080 0 scale 1 transform 270
+output DP-4 mode 3840x2160@240Hz position 2520 0 scale 1.5 render_bit_depth 10 hdr on
+output DP-2 mode 1920x1080@100Hz position 2520 1440 scale 1
+
+# If DP-3 comes up upside down, change 90 to 270.
+# Hyprland's vrr = 2 (fullscreen only) has no sway equivalent; this is
+# always-on VRR, so it stays off unless you want to try it:
+# output DP-4 adaptive_sync on
+
+workspace 5 output DP-4
+exec xrandr --output DP-4 --primary
+
+# ------------------------------------------------------------------- INPUT
+input type:keyboard {
+    xkb_layout "gb,ara,ru,gr"
+    xkb_options "grp:alt_shift_toggle"
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+}
+
+focus_follows_mouse yes
+seat seat0 xcursor_theme Sweet-cursors 30
+
+# --------------------------------------------------------------- AUTOSTART
+exec nm-applet
+exec noctalia
+exec protonvpn connect
+exec systemctl --user start hyprpolkitagent
+
+# -------------------------------------------------------------------- LOOK
+default_border pixel 2
+default_floating_border pixel 2
+
+# gaps_in 6 / gaps_out 12 in Hyprland = 12 between windows, 12 at the edge
+gaps inner 12
+gaps outer 0
+
+# One window on a workspace: no gaps, no border
+smart_gaps on
+smart_borders on
+
+# Plain sway has no blur, shadows or rounded corners.
+
+# Sway borders are one flat colour, so the pink-to-cyan gradient becomes
+# a pink border with a cyan split indicator.
+#                       border    background text      indicator child_border
+client.focused          #ff007fee #ff007fee  #ffffffff #00f0ffee #ff007fee
+client.focused_inactive #595959aa #595959aa  #ffffffff #595959aa #595959aa
+client.unfocused        #595959aa #595959aa  #ffffffff #595959aa #595959aa
+
+# Hyprland had 0.95 active / 0.85 inactive. Sway only has a fixed
+# per-window opacity, so every window gets 0.95.
+for_window [shell=".*"] opacity 0.95
+
+# ------------------------------------------------------------ WINDOW RULES
+# Video players stay solid
+for_window [app_id="^(mpv|vlc)"] opacity 1
+for_window [class="^(mpv|vlc)"] opacity 1
+
+# Games go to workspace 5 on DP-4, fullscreen
+assign [class="^steam_app_.*$"] workspace 5
+for_window [class="^steam_app_.*$"] fullscreen enable
+
+for_window [app_id="^dev\.noctalia\.Noctalia"] floating enable
+
+# ------------------------------------------------------- CORE / WINDOW KEYS
+bindsym Control+Mod1+t exec $term
+bindsym Mod1+F4 kill
+bindsym $mod+Shift+v floating toggle
+bindsym $mod+Shift+m exit
+bindsym $mod+j layout toggle split
+bindsym $mod+Shift+b exec $ipc bar-toggle
+bindsym $mod+Mod1+Control+b reload
+
+# "Minimise" to the scratchpad and bring it back
+bindsym $mod+Shift+Mod1+d move scratchpad
+bindsym $mod+Mod1+d scratchpad show
+
+bindsym Control+Mod1+r exec reboot
+bindsym $mod+v exec $ipc panel-toggle clipboard
+bindsym $mod+F1 exec ~/.config/sway/gamemode.sh
+bindsym $mod+F10 output DP-4 hdr toggle
+
+# Super + left drag moves, Super + right drag resizes
+floating_modifier $mod normal
+
+# ------------------------------------------------------------------- FOCUS
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# -------------------------------------------------------------- WORKSPACES
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# ---------------------------------------------------------- KEYBOARD LAYOUT
+bindsym $mod+space input type:keyboard xkb_switch_layout next
+
+# ------------------------------------------------------------------- MEDIA
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# -------------------------------------------------------------------- APPS
+# hyprshot is Hyprland-only; these need grim, slurp, wl-clipboard and jq.
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+F12 exec ~/.config/sway/shot-window.sh
+
+bindsym Mod1+space exec $ipc panel-toggle launcher
+bindsym --locked $mod+l exec hyprlock
+bindsym $mod+e exec thunar
+bindsym $mod+i exec systemsettings
+bindsym $mod+b exec zen-browser
+bindsym $mod+d exec discord
+bindsym $mod+o exec obsidian
+bindsym $mod+m exec mpv
+bindsym $mod+s exec ~/signal-desktop.AppImage
+
+# ---------------------------------------------- NOT IN THE HYPRLAND CONFIG
+# Added because sway is hard to use without them. Delete if unwanted.
+bindsym $mod+Return exec $term
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# Dwindle-style automatic splits (sway tiles manually otherwise):
+#   sudo pacman -S autotiling, then uncomment
+# exec_always autotiling
+
+# Imports WAYLAND_DISPLAY etc. into systemd so portals and the polkit
+# agent can start.
+include /etc/sway/config.d/*
