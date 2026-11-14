@@ -35,7 +35,6 @@ input type:pointer {
     pointer_accel 0
     scroll_method on_button_down
     scroll_button BTN_MIDDLE
-    scroll_button_lock enabled
 }
 
 focus_follows_mouse yes
