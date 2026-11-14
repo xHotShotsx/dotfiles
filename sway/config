@@ -7,7 +7,7 @@
 # after copying it in, and fix whatever line it names.
 
 set $mod Mod4
-set $term kitty
+set $term foot
 set $ipc noctalia msg
 
 # ---------------------------------------------------------------- MONITORS
@@ -98,8 +98,6 @@ bindsym Control+Mod1+r exec systemctl reboot
 bindsym $mod+Shift+Mod1+d move scratchpad
 bindsym $mod+Mod1+d scratchpad show
 
-bindsym Control+Mod1+r exec reboot
-bindsym $mod+v exec $ipc panel-toggle clipboard
 bindsym $mod+F1 exec ~/.config/sway/gamemode.sh
 bindsym $mod+F10 output DP-4 hdr toggle
 
