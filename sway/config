@@ -7,7 +7,7 @@
 # after copying it in, and fix whatever line it names.
 
 set $mod Mod4
-set $term kitty
+set $term foot
 set $ipc noctalia msg
 
 # ---------------------------------------------------------------- MONITORS
@@ -33,10 +33,13 @@ input type:keyboard {
 input type:pointer {
     accel_profile flat
     pointer_accel 0
+    scroll_method on_button_down
+    scroll_button BTN_MIDDLE
+    scroll_button_lock enabled
 }
 
 focus_follows_mouse yes
-seat seat0 xcursor_theme Sweet-cursors 30
+seat seat0 xcursor_theme Sweet-cursors 22
 
 # --------------------------------------------------------------- AUTOSTART
 exec nm-applet
