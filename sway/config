@@ -156,7 +156,7 @@ bindsym Mod1+space exec $ipc panel-toggle launcher
 bindsym --locked $mod+l exec hyprlock
 bindsym $mod+e exec thunar
 bindsym $mod+i exec systemsettings
-bindsym $mod+b exec zen-browser
+bindsym $mod+b exec librewolf
 bindsym $mod+d exec discord
 bindsym $mod+o exec obsidian
 bindsym $mod+m exec mpv
