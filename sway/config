@@ -161,6 +161,7 @@ bindsym $mod+d exec discord
 bindsym $mod+o exec obsidian
 bindsym $mod+m exec mpv
 bindsym $mod+s exec ~/signal-desktop.AppImage
+bindsym $mod+shift+g exec librewolf -P google --no-remote
 
 # ---------------------------------------------- NOT IN THE HYPRLAND CONFIG
 # Added because sway is hard to use without them. Delete if unwanted.
