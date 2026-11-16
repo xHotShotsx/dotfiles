@@ -12,8 +12,8 @@ set $ipc noctalia msg
 
 # ---------------------------------------------------------------- MONITORS
 # Same geometry as hypr/conf/monitor.lua (positions are logical pixels).
-output DP-3 mode 2560x1440@280Hz position 1080 0 scale 1 transform 270
-output DP-4 mode 3840x2160@240Hz position 2520 0 scale 1.5 render_bit_depth 10 hdr on
+output DP-3 mode 2560x1440@239.97Hz position 1080 0 scale 1 transform 270 adaptive_sync on
+output DP-4 mode 3840x2160@240.02Hz position 2520 0 scale 1.5 render_bit_depth 10 hdr on
 output DP-2 mode 1920x1080@100Hz position 2520 1440 scale 1
 
 # If DP-3 comes up upside down, change 90 to 270.
@@ -86,7 +86,7 @@ for_window [app_id="^dev\.noctalia\.Noctalia"] floating enable
 bindsym Control+Mod1+t exec $term
 bindsym Mod1+F4 kill
 bindsym $mod+Shift+v floating toggle
-bindsym $mod+Shift+m exit
+bindsym $mod+Shift+e exit
 bindsym $mod+j layout toggle split
 bindsym $mod+Shift+b exec $ipc bar-toggle
 bindsym $mod+Mod1+Control+b reload
