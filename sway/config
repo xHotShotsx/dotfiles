@@ -90,7 +90,7 @@ bindsym $mod+Shift+e exit
 bindsym $mod+j layout toggle split
 bindsym $mod+Shift+b exec $ipc bar-toggle
 bindsym $mod+Mod1+Control+b reload
-bindsym Control+Mod1+p exec systemctl poweroff
+bindsym Mod1+F4+Return exec systemctl poweroff
 bindsym Control+Mod1+r exec systemctl reboot
 
 # "Minimise" to the scratchpad and bring it back
