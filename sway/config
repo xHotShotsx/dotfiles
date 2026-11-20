@@ -44,7 +44,7 @@ seat seat0 xcursor_theme Sweet-cursors 22
 exec nm-applet
 exec noctalia
 exec protonvpn connect
-exec systemctl --user start hyprpolkitagent
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # -------------------------------------------------------------------- LOOK
 default_border pixel 2
