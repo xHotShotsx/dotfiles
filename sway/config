@@ -23,6 +23,8 @@ output DP-2 mode 1920x1080@100Hz position 2520 1440 scale 1
 
 workspace 5 output DP-4
 exec xrandr --output DP-4 --primary
+for_window [class="^steam_app_"] fullscreen enable
+for_window [app_id="^steam_app_"] fullscreen enable
 
 # ------------------------------------------------------------------- INPUT
 input type:keyboard {
@@ -162,7 +164,8 @@ bindsym $mod+o exec obsidian
 bindsym $mod+m exec mpv
 bindsym $mod+s exec ~/signal-desktop.AppImage
 bindsym $mod+shift+g exec librewolf -P google --no-remote
-bindsym $mod+v exec noctalia msg panel-toggle clipboard 
+bindsym $mod+v exec noctalia msg panel-toggle clipboard
+bindsym Control+Shift+Escape exec plasma-systemmonitor
 
 # ---------------------------------------------- NOT IN THE HYPRLAND CONFIG
 # Added because sway is hard to use without them. Delete if unwanted.
@@ -175,7 +178,7 @@ bindsym $mod+Shift+Down move down
 
 # Dwindle-style automatic splits (sway tiles manually otherwise):
 #   sudo pacman -S autotiling, then uncomment
-# exec_always autotiling
+exec_always autotiling
 
 # Imports WAYLAND_DISPLAY etc. into systemd so portals and the polkit
 # agent can start.
