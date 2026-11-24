@@ -47,6 +47,7 @@ exec nm-applet
 exec noctalia
 exec protonvpn connect
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec wlsunset -t 4000 -T 6500 -S 06:30 -s 21:30
 
 # -------------------------------------------------------------------- LOOK
 default_border pixel 2
